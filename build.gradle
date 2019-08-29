@@ -1,0 +1,26 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+apply plugin: 'java'
+apply plugin: "application"
+apply plugin: 'com.github.johnrengelman.shadow'
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}
+dependencies {
+    implementation 'com.github.Steveice10:OpenNBT:master-SNAPSHOT'
+    implementation 'org.json:json:20190722'
+}
+mainClassName = "mattworldseed.MinecraftBookReader"
+jar.manifest.attributes('Main-Class': mainClassName)
+runShadow.main = mainClassName
